@@ -2,10 +2,12 @@ Algoritmo registro_general
 	//Registro de N jugadores. Almacenar cedula, nom completo, fecha nacimiento, un correo electronico y lema alusivo al ODS.
 	//No se pueden repetir las cedulas
 	//NOTA: RECORDAR ALMACERNAR TODO ESTO EN ARCHIVOS UNA VEZ QUE SE PASE A C (EL ARCHIVO PUEDE LLAMARSE "Jugadores")
-	definir i, j, k como entero
-	definir ced, nom,fecha,email,lemaods,evafecha como cadena
-	definir dma como entero //dia mes año
+	definir i, j, k,ods,od, odsescogido como entero
+	definir ced, nom,fecha,email,evafecha como cadena
+	definir dma como entero //dia mes aÃ±o
 	definir verifyfecha,verifycedula Como Logico
+	definir lemasods,lemaods como caracter
+	dimensionar lemasods[17]
 
 	escribir sin saltar 'Ingrese la cantidad de Jugadores del evento: '
 	leer N
@@ -45,11 +47,11 @@ Algoritmo registro_general
 			FinSi
 		FinMientras
 		
-		escribir sin saltar 'Ingrese el nombre completo del jugador ','(',i,' de ',N,'): '
+		escribir sin saltar 'Ingrese el nombre completo del jugador: '
 		leer nom[i]
 		
 		escribir ''
-		escribir 'A continuacion, ingrese la fecha de nacimiento (Dia-(1-31),Meses-(1-12),año-(Cualquiera)): '
+		escribir 'A continuacion, ingrese la fecha de nacimiento (Dia-(1-31),Meses-(1-12),aÃ±o-(Cualquiera)): '
 		escribir ''
 		
 		verifyfecha=Falso
@@ -58,7 +60,7 @@ Algoritmo registro_general
 			leer dma[1]
 			escribir sin saltar 'Ingrese mes de nacimiento: '
 			leer dma[2]
-			escribir sin saltar 'Ingrese año de nacimiento: '
+			escribir sin saltar 'Ingrese aÃ±o de nacimiento: '
 			leer dma[3]
 			si dma[1]<=31 y dma[2]<=12 entonces
 				para j=1 hasta 3 con paso 1 Hacer
@@ -80,11 +82,50 @@ Algoritmo registro_general
 			evafecha=''
 		FinMientras
 		
-		escribir 'Ingrese un correo electronico vinculado al jugador ','(',i,' de ',N,'): '
+		escribir 'Ingrese un correo electronico vinculado al jugador: '
 		leer email[i]
 		
-		escribir 'Ingrese un lema alusivo a los ODS ','(',i,' de ',N,'): '
-		leer lemaods[i]
+		escribir 'Ingrese un lema alusivo a los ODS: '
+		loslemas(lemasods,odsescogido)
+		escribir 'Usted ha escogido el lema: ',lemasods[odsescogido]
+		lemaods[i]=lemasods[odsescogido]
 	FinPara
 	
+	
 FinAlgoritmo
+
+SubProceso loslemas(lemasods,odsescogido Por Referencia)
+	lemasods[1]='1. -Fin de la Pobreza-'
+	lemasods[2]='2. -Hambre cero-'
+	lemasods[3]='3.-Salud y bienestar-'
+	lemasods[4]='4. -Educacion de calidad-'
+	lemasods[5]='5. -Igualdad de genero-'
+	lemasods[6]='6. -Agua limpia y saneamiento-'
+	lemasods[7]='7. -Energia asequible y no contaminante-'
+	lemasods[8]='8. -Trabajo decente y crecimiento economico-'
+	lemasods[9]='9. -Industria, innovacion e infraestructura-'
+	lemasods[10]='10. -Reduccion de las desigualdades-'
+	lemasods[11]='11. -Ciudades y comunidades sostenibles-'
+	lemasods[12]='12. -Produccion y consumo responsables-'
+	lemasods[13]='13. -Accion por el clima-'
+	lemasods[14]='14. -Vida submarina-'
+	lemasods[15]='15. -Vida de ecosistemas terrestres-'
+	lemasods[16]='16. -Paz, justicia e instituciones solidas-'
+	lemasods[17]='17. -Alianzas para lograr los objetivos-'
+	Repetir
+		escribir ''
+		escribir '--------------------------------------'
+		para od=1 hasta 17 con paso 1 Hacer
+			escribir lemasods[od]
+		FinPara
+		escribir '--------------------------------------'
+		escribir sin saltar 'Escoja un lema alusivo a los ODS (Ingrese numero del 1 al 17): '
+		leer odsescogido
+		si odsescogido>17 o odsescogido<1 Entonces
+			escribir ''
+			Escribir 'Fuera del Rango. Escoja de nuevo'
+			escribir ''
+		FinSi
+	Hasta Que odsescogido>=1 y odsescogido<=17
+	
+FinSubProceso
